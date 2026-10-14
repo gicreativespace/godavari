@@ -1,12 +1,11 @@
 :root {
-  /* Godavari Daylight Color Palette */
-  --bg-sky: #E3F2FD;          /* Soft daylight sky blue */
-  --river-blue: #0288D1;      /* Deep Godavari river blue */
-  --river-surface: #B3E5FC;   /* Light water surface tone */
-  --bridge-stone: #C26838;    /* Bridge pillar terracotta/stone brown */
-  --text-dark: #0D233A;       /* Deep navy for main headings */
-  --text-muted: #4A6572;      /* Muted blue-grey for descriptions */
-  --card-bg: rgba(255, 255, 255, 0.9); /* Clean glassmorphism white */
+  --bg-sky: #E3F2FD;
+  --river-blue: #0288D1;
+  --river-surface: #B3E5FC;
+  --bridge-stone: #C26838;
+  --text-dark: #0D233A;
+  --text-muted: #4A6572;
+  --card-bg: rgba(255, 255, 255, 0.9);
   --card-border: rgba(2, 136, 209, 0.2);
 }
 
@@ -24,7 +23,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Header Styles */
+/* Premium Header & Navigation */
 header {
   display: flex;
   justify-content: space-between;
@@ -55,102 +54,6 @@ header {
 nav ul {
   display: flex;
   list-style: none;
-  gap: 30px;
-}
-
-nav ul li a {
-  text-decoration: none;
-  color: var(--text-dark);
-  font-weight: 500;
-  transition: color 0.3s ease;
-}
-
-nav ul li a:hover {
-  color: var(--river-blue);
-}
-
-.lang-switch {
-  background: var(--river-blue);
-  color: #fff;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 20px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: background 0.3s ease;
-}
-
-.lang-switch:hover {
-  background: var(--bridge-stone);
-}
-
-/* Hero Section */
-.hero-section {
-  text-align: center;
-  padding: 100px 20px;
-  background: linear-gradient(180deg, var(--bg-sky) 0%, var(--river-surface) 100%);
-}
-
-.hero-section h1 {
-  font-size: 2.8rem;
-  color: var(--text-dark);
-  margin-bottom: 20px;
-}
-
-.hero-section p {
-  font-size: 1.2rem;
-  color: var(--text-muted);
-  max-width: 700px;
-  margin: 0 auto 30px auto;
-  line-height: 1.6;
-}
-
-.cta-btn {
-  background: var(--bridge-stone);
-  color: white;
-  border: none;
-  padding: 12px 30px;
-  font-size: 1rem;
-  border-radius: 30px;
-  cursor: pointer;
-  box-shadow: 0 4px 15px rgba(194, 104, 56, 0.3);
-  transition: transform 0.2s ease, background 0.2s ease;
-}
-
-.cta-btn:hover {
-  transform: translateY(-2px);
-  background: #a9552b;
-}
-
-/* Responsive adjustments */
-@media(max-width: 768px) {
-  header {
-    padding: 15px 5%;
-  }
-  nav ul {
-    display: none; /* Can be expanded with a mobile menu toggle later */
-  }
-  .hero-section h1 {
-    font-size: 2rem;
-  }
-}
-/* Header & Navigation Dropdown Styles */
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 8%;
-  background: rgba(227, 242, 253, 0.95);
-  backdrop-filter: blur(10px);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  border-bottom: 1px solid var(--card-border);
-}
-
-nav ul {
-  display: flex;
-  list-style: none;
   gap: 35px;
   align-items: center;
   margin: 0;
@@ -175,29 +78,36 @@ nav ul li a:hover {
   color: var(--river-blue);
 }
 
-/* Viswam Dropdown Box Styling */
-.dropdown {
-  position: relative;
+/* Premium Viswam Dropdown Styling */
+.dropdown > a::after {
+  content: " ▾";
+  font-size: 0.8rem;
+  opacity: 0.7;
+  transition: transform 0.3s ease;
+}
+
+.dropdown:hover > a::after {
+  transform: rotate(180deg);
 }
 
 .dropdown-box {
   position: absolute;
-  top: 100%;
+  top: 120%;
   left: 50%;
-  transform: translateX(-50%) translateY(10px);
-  background: #ffffff;
-  min-width: 200px;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(2, 136, 209, 0.15);
-  border: 1px solid var(--card-border);
-  padding: 12px 0;
+  transform: translateX(-50%) translateY(15px);
+  background: rgba(227, 242, 253, 0.95);
+  backdrop-filter: blur(12px);
+  min-width: 160px;
+  border-radius: 14px;
+  box-shadow: 0 15px 35px rgba(2, 136, 209, 0.15);
+  border: 1px solid rgba(2, 136, 209, 0.2);
+  padding: 8px 0;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 1100;
 }
 
-/* Show dropdown on hover or active class */
 .dropdown:hover .dropdown-box,
 .dropdown.active .dropdown-box {
   opacity: 1;
@@ -209,11 +119,30 @@ nav ul li a:hover {
   padding: 10px 20px;
   color: var(--text-dark);
   font-size: 0.95rem;
+  font-weight: 500;
+  text-align: center;
   white-space: nowrap;
-  transition: background 0.2s ease, color 0.2s ease;
+  transition: all 0.25s ease;
 }
 
 .dropdown-box a:hover {
-  background: var(--bg-sky);
-  color: var(--river-blue);
+  background: var(--river-blue);
+  color: #ffffff;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.lang-switch {
+  background: var(--river-blue);
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.lang-switch:hover {
+  background: var(--bridge-stone);
 }
