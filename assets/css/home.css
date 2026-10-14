@@ -1,0 +1,118 @@
+/* Worlds Grid Section */
+.worlds-section {
+    padding: 80px 8%;
+    background: #fff;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-title h2 {
+    font-size: 2.2rem;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+}
+
+.section-title p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
+.worlds-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+}
+
+.world-card {
+    background: var(--bg-sky);
+    border: 1px solid var(--card-border);
+    padding: 30px 20px;
+    border-radius: 16px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(2, 136, 209, 0.05);
+}
+
+.world-card:hover {
+    transform: translateY(-5px);
+    background: var(--river-surface);
+    border-color: var(--river-blue);
+    box-shadow: 0 10px 25px rgba(2, 136, 209, 0.15);
+}
+
+.world-element {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.world-card h3 {
+    font-size: 1.3rem;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+}
+
+.world-card p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
+/* Roots Section */
+.roots-section {
+    padding: 90px 8%;
+    text-align: center;
+    background: linear-gradient(135deg, var(--river-surface) 0%, var(--bg-sky) 100%);
+    border-top: 1px solid var(--card-border);
+    border-bottom: 1px solid var(--card-border);
+}
+
+.roots-content max-width {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.roots-content h2 {
+    font-size: 2.2rem;
+    color: var(--bridge-stone);
+    margin-bottom: 15px;
+}
+
+.roots-content p {
+    font-size: 1.2rem;
+    color: var(--text-dark);
+    line-height: 1.6;
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+/* Footer */
+footer {
+    background: var(--text-dark);
+    color: #fff;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+footer h3 {
+    color: var(--river-surface);
+    font-size: 1.4rem;
+    margin-bottom: 5px;
+}
+
+footer p {
+    color: #94a3b8;
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+}
+
+.copyright {
+    font-size: 0.85rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 15px;
+    margin-top: 20px;
+}
