@@ -134,3 +134,86 @@ nav ul li a:hover {
     font-size: 2rem;
   }
 }
+/* Header & Navigation Dropdown Styles */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 8%;
+  background: rgba(227, 242, 253, 0.95);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid var(--card-border);
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 35px;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  position: relative;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: var(--text-dark);
+  font-weight: 500;
+  font-size: 1.05rem;
+  transition: color 0.3s ease;
+  padding: 10px 0;
+  display: block;
+}
+
+nav ul li a:hover {
+  color: var(--river-blue);
+}
+
+/* Viswam Dropdown Box Styling */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-box {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: #ffffff;
+  min-width: 200px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(2, 136, 209, 0.15);
+  border: 1px solid var(--card-border);
+  padding: 12px 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 1100;
+}
+
+/* Show dropdown on hover or active class */
+.dropdown:hover .dropdown-box,
+.dropdown.active .dropdown-box {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.dropdown-box a {
+  padding: 10px 20px;
+  color: var(--text-dark);
+  font-size: 0.95rem;
+  white-space: nowrap;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.dropdown-box a:hover {
+  background: var(--bg-sky);
+  color: var(--river-blue);
+}
