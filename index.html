@@ -8,22 +8,16 @@
     <link rel="stylesheet" href="assets/css/home.css">
 </head>
 <body>
-
-    <!-- Header -->
     <header>
-        <div class="brand-logo" id="brand-logo-text">
-            GI
-            <span>Creative Space</span>
-        </div>
+        <div class="brand-logo">GI <span>Creative Space</span></div>
         <nav>
             <ul id="nav-menu">
-                <!-- Will be populated dynamically by JS -->
+                <!-- Dynamically Populated by App.js -->
             </ul>
         </nav>
         <button class="lang-switch" id="langToggleBtn">తెలుగు | EN</button>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero-section">
         <div class="hero-content">
             <h1 id="hero-tagline">గోదావరి ఒడ్డున పుట్టిన ఆలోచనలకు ఒక ప్రపంచం.</h1>
@@ -33,27 +27,14 @@
         </div>
     </section>
 
-    <!-- Panchabhutas & Five Worlds Section -->
     <section class="worlds-section">
         <div class="section-title">
-            <h2 id="worlds-heading">మీకు నచ్చిన ప్రపంచంలోకి వెళ్లండి.</h2>
-            <p id="worlds-sub">ఒక్కో ప్రపంచం ఒక ప్రత్యేక అనుభవం. ఒక్కో ఆలోచనకు ఒక ప్రత్యేక దారి.</p>
+            <h2 id="worlds-heading">మన ప్రపంచం. ఐదు మూలాలు.</h2>
+            <p id="worlds-sub">ప్రకృతిలోని ఐదు మూలాల్లాగే మన ఆలోచనలకు కూడా ఐదు ప్రవాహాలు ఉన్నాయి.</p>
         </div>
-        
-        <div class="worlds-grid" id="worldsGrid">
-            <!-- Dynamic Cards from site-data.js -->
-        </div>
+        <div class="worlds-grid" id="worldsGrid"></div>
     </section>
 
-    <!-- Godavari Roots Section -->
-    <section class="roots-section">
-        <div class="roots-content">
-            <h2 id="roots-title">గోదావరి మూలాలు. ఇప్పనపాడు ఆత్మ.</h2>
-            <p id="roots-desc">మనం ఎక్కడి నుంచి వచ్చామో మర్చిపోకుండా, మనం ఎక్కడికి వెళ్లాలనుకుంటున్నామో ఊహించుకునే ప్రపంచం.</p>
-        </div>
-    </section>
-
-    <!-- Footer -->
     <footer>
         <div class="footer-content">
             <h3>GI Creative Space</h3>
@@ -62,8 +43,58 @@
         </div>
     </footer>
 
-    <!-- Scripts -->
     <script src="assets/js/site-data.js"></script>
-    <script src="assets/js/app.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            let currentLang = "telugu";
+            const langToggleBtn = document.getElementById("langToggleBtn");
+            const navMenu = document.getElementById("nav-menu");
+            const heroTagline = document.getElementById("hero-tagline");
+            const heroSubline = document.getElementById("hero-subline");
+            const heroDesc = document.getElementById("hero-desc");
+            const heroCta = document.getElementById("hero-cta");
+            const worldsGrid = document.getElementById("worldsGrid");
+
+            function render() {
+                const nav = siteData.nav;
+                const viswamNames = nav.viswamDropdown[currentLang];
+                const links = ["writings.html", "devotional.html", "education.html", "media.html", "space.html"];
+
+                navMenu.innerHTML = `
+                    <li><a href="index.html">${nav.menu[currentLang][0]}</a></li>
+                    <li class="dropdown">
+                        <a href="javascript:void(0);">${nav.menu[currentLang][1]}</a>
+                        <div class="dropdown-box">
+                            ${viswamNames.map((name, i) => `<a href="pages/${links[i]}">${name}</a>`).join("")}
+                        </div>
+                    </li>
+                    <li><a href="#about">${nav.menu[currentLang][2]}</a></li>
+                    <li><a href="#contact">${nav.menu[currentLang][3]}</a></li>
+                `;
+
+                heroTagline.textContent = siteData.hero.tagline[currentLang];
+                heroSubline.textContent = siteData.hero.subLine[currentLang];
+                heroDesc.textContent = siteData.hero.description[currentLang];
+                heroCta.textContent = siteData.hero.ctaButton[currentLang];
+
+                worldsGrid.innerHTML = siteData.worlds.map(w => `
+                    <a href="${w.link}" class="world-card">
+                        <span class="world-element">${currentLang === "telugu" ? w.elementTelugu : w.elementEnglish}</span>
+                        <h3>${currentLang === "telugu" ? w.nameTelugu : w.nameEnglish}</h3>
+                        <p>${currentLang === "telugu" ? w.descTelugu : w.descEnglish}</p>
+                    </a>
+                `).join("");
+
+                langToggleBtn.textContent = currentLang === "telugu" ? "తెలుగు | EN" : "English | TE";
+            }
+
+            langToggleBtn.addEventListener("click", () => {
+                currentLang = currentLang === "telugu" ? "english" : "telugu";
+                render();
+            });
+
+            render();
+        });
+    </script>
 </body>
 </html>
