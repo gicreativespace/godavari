@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">GI.Writings - జలం | GI Creative Space</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/home.css">
+</head>
+<body>
+    <header>
+        <div class="brand-logo">GI <span>Creative Space</span></div>
+        <nav>
+            <ul id="nav-menu">
+                <!-- Dynamic Menu -->
+            </ul>
+        </nav>
+        <button class="lang-switch" id="langToggleBtn">తెలుగు | EN</button>
+    </header>
+
+    <section class="hero-section" style="padding: 70px 20px;">
+        <span id="page-element" style="font-size: 2.5rem;">🌊 జలం</span>
+        <h1 id="page-heading" style="margin-top: 15px; font-size: 2.4rem;">మనసులో పుట్టిన మాటలకు ఒక చోటు.</h1>
+        <p id="page-sub" style="font-size: 1.15rem; margin-top: 10px; color: var(--bridge-stone);">కొన్ని ఆలోచనలు చెప్పడానికి కాదు… రాయడానికి పుడతాయి.</p>
+    </section>
+
+    <section class="worlds-section" style="max-width: 800px; margin: 0 auto; line-height: 1.8; font-size: 1.1rem; color: var(--text-dark);">
+        <p id="page-p1" style="margin-bottom: 20px;">మన చుట్టూ కనిపించే చిన్న విషయాల నుంచి, మనసులో మిగిలిపోయే పెద్ద భావాల వరకు — ప్రతి అనుభవానికి ఒక కథ ఉంటుంది.</p>
+        <p id="page-p2" style="margin-bottom: 20px;">ఊరి అరుగు, గోదావరి గట్టు, మట్టివాసన, మనుషుల మాటలు, జ్ఞాపకాలు, నవ్వులు, బాధలు… ఇవన్నీ మన రాతల్లోకి వస్తాయి.</p>
+        <p id="page-p3" style="margin-bottom: 30px;"><strong>ఇక్కడ రాసేది కేవలం అక్షరాలు కాదు. మనకు అనిపించినదాన్ని మనసుకు అర్థమయ్యేలా చెప్పే ప్రయత్నం.</strong></p>
+        
+        <div style="background: var(--bg-sky); padding: 25px; border-radius: 12px; border-left: 4px solid var(--river-blue); margin-top: 30px;">
+            <h3 id="box-title" style="margin-bottom: 10px; color: var(--river-blue);">Possible Categories</h3>
+            <p id="box-text">కథలు • కవితలు • గోదావరి కబుర్లు • జ్ఞాపకాలు • ఆలోచనలు • చిన్న పరిశీలనలు</p>
+        </div>
+    </section>
+
+    <footer style="margin-top: 60px;">
+        <p>© GI Creative Space • Godavari Roots & Ippanapadu Soul</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../assets/js/site-data.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            let currentLang = "telugu";
+            const langToggleBtn = document.getElementById("langToggleBtn");
+
+            const pageTitle = document.getElementById("page-title");
+            const navMenu = document.getElementById("nav-menu");
+            const pageElement = document.getElementById("page-element");
+            const pageHeading = document.getElementById("page-heading");
+            const pageSub = document.getElementById("page-sub");
+            const pageP1 = document.getElementById("page-p1");
+            const pageP2 = document.getElementById("page-p2");
+            const pageP3 = document.getElementById("page-p3");
+            const boxTitle = document.getElementById("box-title");
+            const boxText = document.getElementById("box-text");
+
+            function updateContent() {
+                const c = siteData.pagesContent.writings;
+                const menuItems = siteData.nav.menu[currentLang];
+                
+                // Nav Menu (Home, Water, Fire, Earth, Air, Space mapping relative paths)
+                const links = ["../index.html", "writings.html", "devotional.html", "education.html", "media.html", "space.html"];
+                navMenu.innerHTML = menuItems.map((item, index) => `<li><a href="${links[index]}" ${index === 1 ? 'style="color: var(--river-blue); font-weight:600;"' : ''}>${item}</a></li>`).join("");
+
+                pageTitle.textContent = c.title[currentLang] + " | GI Creative Space";
+                pageElement.textContent = c.element[currentLang];
+                pageHeading.textContent = c.heading[currentLang];
+                pageSub.textContent = c.sub[currentLang];
+                pageP1.textContent = c.p1[currentLang];
+                pageP2.textContent = c.p2[currentLang];
+                pageP3.innerHTML = `<strong>${currentLang === "telugu" ? "ఇక్కడ రాసేది కేవలం అక్షరాలు కాదు. మనకు అనిపించినదాన్ని మనసుకు అర్థమయ్యేలా చెప్పే ప్రయత్నం." : "What is written here is not just letters. It is an effort to convey what we feel in a way the heart understands."}</strong>`;
+                boxTitle.textContent = c.boxTitle[currentLang];
+                boxText.textContent = c.boxText[currentLang];
+
+                langToggleBtn.textContent = currentLang === "telugu" ? "తెలుగు | EN" : "English | TE";
+            }
+
+            langToggleBtn.addEventListener("click", () => {
+                currentLang = currentLang === "telugu" ? "english" : "telugu";
+                updateContent();
+            });
+
+            updateContent();
+        });
+    </script>
+</body>
+</html>
