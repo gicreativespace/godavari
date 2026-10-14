@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">GI.Space - ఆకాశం | GI Creative Space</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/home.css">
+</head>
+<body>
+    <header>
+        <div class="brand-logo">GI <span>Creative Space</span></div>
+        <nav>
+            <ul id="nav-menu">
+                <!-- Dynamic Menu -->
+            </ul>
+        </nav>
+        <button class="lang-switch" id="langToggleBtn">తెలుగు | EN</button>
+    </header>
+
+    <section class="hero-section" style="padding: 70px 20px;">
+        <span id="page-element" style="font-size: 2.5rem;">∞ ఆకాశం</span>
+        <h1 id="page-heading" style="margin-top: 15px; font-size: 2.4rem;">ఇంకా పేరు పెట్టని ఆలోచనలకు ఒక స్థలం.</h1>
+        <p id="page-sub" style="font-size: 1.15rem; margin-top: 10px; color: var(--bridge-stone);">ప్రతి ఆలోచనను ఒక categoryలో పెట్టాల్సిన అవసరం లేదు.</p>
+    </section>
+
+    <section class="worlds-section" style="max-width: 800px; margin: 0 auto; line-height: 1.8; font-size: 1.1rem; color: var(--text-dark);">
+        <p id="page-p1" style="margin-bottom: 20px;">కొన్ని ఆలోచనలు రాతగా మొదలవుతాయి. కొన్ని వీడియోగా మారతాయి. మరికొన్ని… ఇంకా ఏ రూపం తీసుకోవాలో కూడా తెలియదు. అలాంటి ఆలోచనల కోసం ఈ space.</p>
+        <p id="page-p2" style="margin-bottom: 30px;"><strong>ఇది ఒక category కాదు. ఇది ఒక అవకాశం. ఇక్కడి నుంచే కొత్త projects పుట్టవచ్చు. కొత్త worlds పుట్టవచ్చు.</strong></p>
+        
+        <div style="background: var(--bg-sky); padding: 25px; border-radius: 12px; text-align: center; border-left: 4px solid var(--bridge-stone);">
+            <p id="box-text" style="font-weight: 600; color: var(--text-dark); white-space: pre-line;">ఇక్కడ ముగింపు లేదు.
+ఇక్కడి నుంచే ఇంకేదో మొదలవుతుంది.</p>
+        </div>
+    </section>
+
+    <footer style="margin-top: 60px;">
+        <p>© GI Creative Space • Godavari Roots & Ippanapadu Soul</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../assets/js/site-data.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            let currentLang = "telugu";
+            const langToggleBtn = document.getElementById("langToggleBtn");
+
+            const pageTitle = document.getElementById("page-title");
+            const navMenu = document.getElementById("nav-menu");
+            const pageElement = document.getElementById("page-element");
+            const pageHeading = document.getElementById("page-heading");
+            const pageSub = document.getElementById("page-sub");
+            const pageP1 = document.getElementById("page-p1");
+            const pageP2 = document.getElementById("page-p2");
+            const boxText = document.getElementById("box-text");
+
+            function updateContent() {
+                const c = siteData.pagesContent.space;
+                const menuItems = siteData.nav.menu[currentLang];
+                
+                const links = ["../index.html", "writings.html", "devotional.html", "education.html", "media.html", "space.html"];
+                navMenu.innerHTML = menuItems.map((item, index) => `<li><a href="${links[index]}" ${index === 5 ? 'style="color: var(--river-blue); font-weight:600;"' : ''}>${item}</a></li>`).join("");
+
+                pageTitle.textContent = c.title[currentLang] + " | GI Creative Space";
+                pageElement.textContent = c.element[currentLang];
+                pageHeading.textContent = c.heading[currentLang];
+                pageSub.textContent = c.sub[currentLang];
+                pageP1.textContent = c.p1[currentLang];
+                pageP2.innerHTML = `<strong>${currentLang === "telugu" ? "ఇది ఒక category కాదు. ఇది ఒక అవకాశం. ఇక్కడి నుంచే కొత్త projects పుట్టవచ్చు. కొత్త worlds పుట్టవచ్చు." : "This is not a category. This is an opportunity. From here new projects may be born. New worlds may emerge."}</strong>`;
+                boxText.textContent = c.boxText[currentLang];
+
+                langToggleBtn.textContent = currentLang === "telugu" ? "తెలుగు | EN" : "English | TE";
+            }
+
+            langToggleBtn.addEventListener("click", () => {
+                currentLang = currentLang === "telugu" ? "english" : "telugu";
+                updateContent();
+            });
+
+            updateContent();
+        });
+    </script>
+</body>
+</html>
