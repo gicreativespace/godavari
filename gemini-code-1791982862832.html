@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">GI.Devotional - అగ్ని | GI Creative Space</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/home.css">
+</head>
+<body>
+    <header>
+        <div class="brand-logo">GI <span>Creative Space</span></div>
+        <nav>
+            <ul id="nav-menu">
+                <!-- Dynamic Menu -->
+            </ul>
+        </nav>
+        <button class="lang-switch" id="langToggleBtn">తెలుగు | EN</button>
+    </header>
+
+    <section class="hero-section" style="padding: 70px 20px;">
+        <span id="page-element" style="font-size: 2.5rem;">🔥 అగ్ని</span>
+        <h1 id="page-heading" style="margin-top: 15px; font-size: 2.4rem;">భక్తికి మాటలు అవసరం లేదు. భావం చాలు.</h1>
+        <p id="page-sub" style="font-size: 1.15rem; margin-top: 10px; color: var(--bridge-stone);">మన సంస్కృతిలో కథలు కేవలం గతాన్ని చెప్పవు. మనకు ఎలా జీవించాలో కూడా చెబుతాయి.</p>
+    </section>
+
+    <section class="worlds-section" style="max-width: 800px; margin: 0 auto; line-height: 1.8; font-size: 1.1rem; color: var(--text-dark);">
+        <p id="page-p1" style="margin-bottom: 20px;">దేవతల కథల్లో మనం చూసేది అద్భుతాలు మాత్రమే కాదు. ధైర్యం, నమ్మకం, మంచితనం, ధర్మం, కరుణ, సహనం — మన జీవితానికి అవసరమైన ఎన్నో భావాలు అందులో ఉంటాయి.</p>
+        <p id="page-p2" style="margin-bottom: 30px;">పండుగలు, అమ్మవారి అలంకారాలు, పురాణ కథలు, మన ఊరి ఆచారాలు — వాటి వెనుక ఉన్న భావాన్ని సులభమైన మాటల్లో తెలుసుకునే స్థలం ఇది.</p>
+        
+        <div style="background: var(--bg-sky); padding: 25px; border-radius: 12px; border-left: 4px solid var(--bridge-stone); text-align: center;">
+            <p id="box-text" style="font-weight: 600; color: var(--text-dark);">భక్తి మనసులో మొదలవుతుంది. భావం జీవితంలో కనిపిస్తుంది.</p>
+        </div>
+    </section>
+
+    <footer style="margin-top: 60px;">
+        <p>© GI Creative Space • Godavari Roots & Ippanapadu Soul</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../assets/js/site-data.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            let currentLang = "telugu";
+            const langToggleBtn = document.getElementById("langToggleBtn");
+
+            const pageTitle = document.getElementById("page-title");
+            const navMenu = document.getElementById("nav-menu");
+            const pageElement = document.getElementById("page-element");
+            const pageHeading = document.getElementById("page-heading");
+            const pageSub = document.getElementById("page-sub");
+            const pageP1 = document.getElementById("page-p1");
+            const pageP2 = document.getElementById("page-p2");
+            const boxText = document.getElementById("box-text");
+
+            function updateContent() {
+                const c = siteData.pagesContent.devotional;
+                const menuItems = siteData.nav.menu[currentLang];
+                
+                const links = ["../index.html", "writings.html", "devotional.html", "education.html", "media.html", "space.html"];
+                navMenu.innerHTML = menuItems.map((item, index) => `<li><a href="${links[index]}" ${index === 2 ? 'style="color: var(--river-blue); font-weight:600;"' : ''}>${item}</a></li>`).join("");
+
+                pageTitle.textContent = c.title[currentLang] + " | GI Creative Space";
+                pageElement.textContent = c.element[currentLang];
+                pageHeading.textContent = c.heading[currentLang];
+                pageSub.textContent = c.sub[currentLang];
+                pageP1.textContent = c.p1[currentLang];
+                pageP2.textContent = c.p2[currentLang];
+                boxText.textContent = c.boxText[currentLang];
+
+                langToggleBtn.textContent = currentLang === "telugu" ? "తెలుగు | EN" : "English | TE";
+            }
+
+            langToggleBtn.addEventListener("click", () => {
+                currentLang = currentLang === "telugu" ? "english" : "telugu";
+                updateContent();
+            });
+
+            updateContent();
+        });
+    </script>
+</body>
+</html>
